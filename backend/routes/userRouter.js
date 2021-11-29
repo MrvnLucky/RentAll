@@ -27,17 +27,17 @@ router.post("/register", async (req, res) => {
 
     // Check for passwordVerify
     if (password !== passwordVerify) {
-      return res.status(400).json({
-        errorMessage: "Please enter the same password twice",
-      });
+      return res
+        .status(400)
+        .json({ errorMessage: "Please enter the same password twice" });
     }
 
     // Check for existing user with registered email
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return res.status(400).json({
-        errorMessage: "Account with this email already exist",
-      });
+      return res
+        .status(400)
+        .json({ errorMessage: "Account with this email already exist" });
     }
 
     // Hash the password
@@ -47,27 +47,14 @@ router.post("/register", async (req, res) => {
 
     // Save to database
 
-    const newUser = new User({
-      email,
-      name,
-      passwordHash,
-    });
+    const newUser = new User({ email, name, passwordHash });
     const savedUser = await newUser.save();
 
     // sign token
-    const token = jwt.sign(
-      {
-        user: savedUser._id,
-      },
-      process.env.JWT_SECRET
-    );
+    const token = jwt.sign({ user: savedUser._id }, process.env.JWT_SECRET);
 
     // send token with HTTP-only cookie
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-      })
-      .send();
+    res.cookie("token", token, { httpOnly: true }).send();
   } catch (err) {
     console.error(err);
     res.status(500).send();
@@ -83,9 +70,9 @@ router.post("/login", async (req, res) => {
 
     // Check for required fields
     if (!email || !password) {
-      return res
-        .status(400)
-        .json({ errorMessage: "Please enter all required fields" });
+      return res.status(400).json({
+        errorMessage: "Please enter all required fields",
+      });
     }
 
     // Check for existing user with registered email
@@ -104,19 +91,10 @@ router.post("/login", async (req, res) => {
     }
 
     // sign token
-    const token = jwt.sign(
-      {
-        user: existingUser._id,
-      },
-      process.env.JWT_SECRET
-    );
+    const token = jwt.sign({ user: existingUser._id }, process.env.JWT_SECRET);
 
     // send token with HTTP-only cookie
-    res
-      .cookie("token", token, {
-        httpOnly: true,
-      })
-      .send();
+    res.cookie("token", token, { httpOnly: true }).send();
   } catch (err) {
     console.error(err);
     res.status(500).send();
@@ -125,10 +103,7 @@ router.post("/login", async (req, res) => {
 
 // Route for user logout
 router.get("/logout", (req, res) => {
-  res.cookie("token", "", {
-    httpOnly: true,
-    expires: new Date(0),
-  });
+  res.cookie("token", "", { httpOnly: true, expires: new Date(0) });
 });
 
 export default router;

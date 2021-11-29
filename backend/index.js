@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
+import cookieParser from "cookie-parser";
 
 // Initialization
 
@@ -9,6 +10,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
+app.use(cookieParser());
 
 const PORT = process.env.PORT || 5000;
 
@@ -25,7 +27,10 @@ mongoose
 
 // Routes
 import userRouter from "./routes/userRouter.js";
+import itemRouter from "./routes/itemRouter.js";
+
 app.use("/auth", userRouter);
+app.use("/item", itemRouter);
 
 // App listener
 
