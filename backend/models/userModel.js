@@ -11,7 +11,19 @@ const userSchema = new mongoose.Schema({
   role: {
     type: Number,
     required: true,
+    default: 1,
   },
+  // profile: {
+  //   name: {
+  //     type: String,
+  //     required: true,
+  //   },
+  //   adress: [
+  //     {
+  //       type: String,
+  //     },
+  //   ],
+  // },
 });
 
 export const User = mongoose.model("User", userSchema);
