@@ -5,6 +5,7 @@ import { useNavigate } from "react-router";
 
 export default function Register() {
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [passwordVerify, setPasswordVerify] = useState("");
 
@@ -17,6 +18,7 @@ export default function Register() {
     try {
       const registerData = {
         email,
+        name,
         password,
         passwordVerify,
       };
@@ -38,8 +40,14 @@ export default function Register() {
       <form onSubmit={register}>
         <input
           type="email"
-          placeholder="Email"
+          placeholder="Your Email..."
           onChange={(e) => setEmail(e.target.value)}
+          value={email}
+        />
+        <input
+          type="name"
+          placeholder="Your Name..."
+          onChange={(e) => setName(e.target.value)}
           value={email}
         />
         <input

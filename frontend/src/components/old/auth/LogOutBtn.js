@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { useContext } from "react";
-import AuthContext from "../../context/AuthContext";
+import AuthContext from "../../../context/AuthContext";
 import { useNavigate } from "react-router";
 
 export default function LogOutBtn() {

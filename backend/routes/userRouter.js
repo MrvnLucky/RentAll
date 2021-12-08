@@ -7,7 +7,7 @@ import jwt from "jsonwebtoken";
 // Route for user register
 router.post("/register", async (req, res) => {
   try {
-    const { email, password, passwordVerify } = req.body;
+    const { email, password, passwordVerify, isAdmin } = req.body;
 
     //  Validation
 
@@ -47,7 +47,7 @@ router.post("/register", async (req, res) => {
 
     // Save to database
 
-    const newUser = new User({ email, passwordHash });
+    const newUser = new User({ email, name, passwordHash });
     const savedUser = await newUser.save();
 
     // sign token
@@ -102,8 +102,6 @@ router.post("/login", async (req, res) => {
 });
 
 // Route for user logout
-
-// FIXME: broken
 router.get("/logout", (req, res) => {
   res.cookie("token", "", { httpOnly: true, expires: new Date(0) }).send();
 });
