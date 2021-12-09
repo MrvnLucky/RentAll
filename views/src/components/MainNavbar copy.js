@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import { logout } from "./../redux/actions/auth-actions/logoutAction";
 import { useDispatch, useSelector } from "react-redux";
 import Search from "./Search";
 import Loader from "react-loader-spinner";
-import 'bootstrap-icons/font/bootstrap-icons.css';
 
 import logo from "./../assets/pictures/logo.png";
 
@@ -40,8 +39,8 @@ function MainNavbar() {
   let signUp;
   if (!auth.isCustomer && !loading) {
     signUp = (
-      <Link to="/signup" className="nav-link help" style={{color: "white", fontWeight: "bold", fontSize: "18px"}}>
-        Daftar /
+      <Link to="/signup" className="nav-link">
+        Sign Up /
       </Link>
     );
   }
@@ -50,7 +49,7 @@ function MainNavbar() {
   let login;
   if (!auth.isCustomer && !loading) {
     login = (
-      <Link to="/login" className="nav-link help" style={{color: "white", fontWeight: "bold", fontSize: "18px"}}>
+      <Link to="/login" className="nav-link">
         Login
       </Link>
     );
@@ -64,22 +63,14 @@ function MainNavbar() {
     );
   } else if (user) {
     userDropDown = (
-      <>
-      <Link className="help" style={{color: "white"}} to="/wish_list">
-        <i className="bi bi-heart-fill help" style={{color: "white", fontWeight: "", fontSize: "25px"}} aria-hidden="true" />
-      </Link>
-      <Link className="help" style={{color: "white"}} to="/settings">
-        <i className="bi bi-person-circle help" style={{color: "white", fontWeight: "", fontSize: "25px"}} aria-hidden="true" />
-      </Link>
       <span className="nav-link">
-        
         <NavDropdown title={user.firstName} id="basic-nav-dropdown">
-          {/* <NavDropdown.Item>
+          <NavDropdown.Item>
             <Link className="dropdown-item" to="/settings">
               <i className="fa fa-user-o" aria-hidden="true" />
               My Account
             </Link>
-          </NavDropdown.Item> */}
+          </NavDropdown.Item>
 
           <NavDropdown.Item>
             <Link className="dropdown-item" to="/my_addresses">
@@ -88,12 +79,12 @@ function MainNavbar() {
             </Link>
           </NavDropdown.Item>
 
-          {/* <NavDropdown.Item>
+          <NavDropdown.Item>
             <Link className="dropdown-item" to="/wish_list">
               <i className="fa fa-heart" aria-hidden="true" />
               Wish List
             </Link>
-          </NavDropdown.Item> */}
+          </NavDropdown.Item>
 
           <NavDropdown.Item>
             <Link className="dropdown-item" to="/my_orders">
@@ -102,7 +93,7 @@ function MainNavbar() {
             </Link>
           </NavDropdown.Item>
 
-          {/* {dashboard} */}
+          {dashboard}
 
           <NavDropdown.Divider />
 
@@ -112,13 +103,12 @@ function MainNavbar() {
           </NavDropdown.Item>
         </NavDropdown>
       </span>
-      </>
     );
   }
 
   return (
-    <Navbar expand="xxl" className="main-navbar bg-home" expanded={expanded}>
-      {/* <div>
+    <Navbar bg="light" expand="xxl" className="main-navbar" expanded={expanded}>
+      <div>
         <Navbar.Toggle
           aria-controls="basic-navbar-nav"
           className="navbar-toggle"
@@ -133,10 +123,6 @@ function MainNavbar() {
             alt="React Bootstrap logo"
           />
         </Link>
-      </div> */}
-      <div class="row">
-        <span class="col rentall navbar-brand mb-0 h1"><a href="/" style={{color:"white"}}>RentAll</a></span>
-        <span class="col" style={{marginTop: "auto", marginBottom: "auto"}}><a href="/categories" className="help" style={{color:"white", fontSize: "18px"}}>Kategori</a></span>
       </div>
 
       <Search />
@@ -222,15 +208,13 @@ function MainNavbar() {
         </Nav>
       </Navbar.Collapse>
 
-      {auth.isCustomer && (
-        <Link to="/cart">
-          <i className="bi bi-cart-fill help" style={{color: "white", fontWeight: "bold", fontSize: "25px"}} aria-hidden="true" />
-        </Link>
-      )}
-      
-
       {userDropDown}
 
+      {auth.isCustomer && (
+        <Link to="/cart">
+          <i className="fa fa-shopping-cart cart-icon" aria-hidden="true" />
+        </Link>
+      )}
     </Navbar>
   );
 }

@@ -1,47 +1,9 @@
 /*variables*/
 $main-color: rgb(221, 28, 28);
-@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
-*{
-    font-family: 'Inter', sans-serif;
-}
-.bg-home {
-    background: #FFC107 !important;
-    color: white !important;
-    padding: 0;
-}
-a.header {
-    color: white !important;
-}
-span.rentall {
-    font-style: normal;
-    font-weight: bold;
-    font-size: 48px;
-    line-height: 58px;
-    /* identical to box height */
 
-    display: flex;
-    align-items: center;
-    text-align: center;
-}
-.rentall:hover {
-    color: black;
-}
-.help:hover {
-    color: black !important;
-}
-a {
-    text-decoration: none !important;
-}
-.buttonSearch {
-    background-color: white !important;
-    color :black;
-}
-.buttonSearch:hover {
-    background-color: black !important;
-}
 .main-navbar {
-  padding: 20px 120px 20px !important;
-  margin-bottom: 80px;
+  padding: 0 !important;
+  margin-bottom: 50px;
   z-index: 2000;
 
   .nav-link {
@@ -197,13 +159,8 @@ a {
 
   /*user dropdpwn menue*/
   .nav-link {
-    :hover {
-      color: black !important;
-    }
     #basic-nav-dropdown {
-      color: white;
-      font-size: 20px;
-      
+      color: gray;
     }
 
     .dropdown-menu {
