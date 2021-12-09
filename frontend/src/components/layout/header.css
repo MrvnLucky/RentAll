@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+*{
+    font-family: 'Inter', sans-serif;
+}
+.bg-home {
+    background: #FFC107;
+    color: white !important;
+    padding: 0px !important;
+}
+a.header {
+    color: white !important;
+}
+span.rentall {
+    font-style: normal;
+    font-weight: bold;
+    font-size: 48px;
+    line-height: 58px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.rentall:hover {
+    color: black;
+}
+.help:hover {
+    color: black !important;
+}
+a {
+    text-decoration: none !important;
+}
+.buttonSearch {
+    background-color: white !important;
+    color :black;
+}
+.buttonSearch:hover {
+    background-color: black !important;
+}

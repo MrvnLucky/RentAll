@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+*{
+    font-family: 'Inter', sans-serif;
+}
+.footer {
+    border-bottom: 3px solid #FFC107;
+    margin-bottom: 30px;
+    display: flex;
+}
