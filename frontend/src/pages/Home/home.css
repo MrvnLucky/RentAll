@@ -1,0 +1,36 @@
+/* .form-control{
+    width: 500px;
+} */
+.buttonSearch {
+    background-color: white !important;
+    color :black;
+}
+.buttonSearch:hover {
+    background-color: black !important;
+}
+
+.carousel{
+    margin-top: 30px;
+    margin-left: 180px;
+    margin-right: 180px;
+    margin-bottom: 50px;
+}
+
+.Card{
+    height: 50px;
+    margin-left: 50px;
+    padding-left: 125px;
+    padding-right: 175px;
+}
+.card-img, .card-img-top {
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+    width: 172px;
+    height: 100px;
+}
+a#navbarDropdown.dropdown-toggle.nav-link{
+    color: white;
+}
+a#navbarDropdown.dropdown-toggle.nav-link:hover{
+    color: black;
+}
