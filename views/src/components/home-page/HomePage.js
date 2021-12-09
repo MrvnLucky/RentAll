@@ -5,7 +5,7 @@ import { fetchProducts } from "../../redux/actions/product-actions/fetchProducts
 import Slider from "./Slider";
 import ProductsCarousel from "./ProductsCarousel";
 import DealsOfTheDay from "./DealsOfTheDay";
-import ExploreMore from "./ExploreMore";
+// import ExploreMore from "./ExploreMore";
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -17,10 +17,10 @@ function HomePage() {
   return (
     <Container fluid>
       <Slider />
-      <ProductsCarousel title='Popular Products' productsNumber='4' />
-      <ProductsCarousel title='Featured Products' productsNumber='4' />
-      <DealsOfTheDay productsNumber='3' />
-      <ExploreMore />
+      <ProductsCarousel title="Popular Products" productsNumber="4" />
+      <ProductsCarousel title="Featured Products" productsNumber="4" />
+      <DealsOfTheDay productsNumber="3" />
+      {/* <ExploreMore /> */}
     </Container>
   );
 }

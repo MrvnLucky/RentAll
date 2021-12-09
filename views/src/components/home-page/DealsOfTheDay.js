@@ -4,14 +4,13 @@ import ProductsCarousel from "./ProductsCarousel";
 
 const DealsOfTheDay = () => {
   return (
-    <Row className='deals-of-the-day'>
-      <Col lg='3' className='title'>
+    <Row className="deals-of-the-day">
+      <Col lg="3" className="title">
         <p>Deals of</p>
         <p> the Day</p>
-        <p>23/11/21</p>
       </Col>
-      <Col lg='9'>
-        <ProductsCarousel productsNumber='3' />
+      <Col lg="9">
+        <ProductsCarousel productsNumber="3" />
       </Col>
     </Row>
   );
