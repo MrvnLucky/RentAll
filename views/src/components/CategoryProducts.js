@@ -67,44 +67,45 @@ function CategoryProducts(props) {
         <Row>
           {categoryProducts.map(product => {
             return (
-              <Col lg={3} key={product._id} className='product-card'>
+              <Col lg={3} key={product._id} className="product-card">
                 <Card>
                   <Card.Img
-                    className='product-card-image'
-                    variant='top'
-                    src={product.productImage[0]}
+                    className="product-card-image"
+                    variant="top"
+                    // src={product.productImage[0]}
+                    src="https://dummyimage.com/400.png"
                   />
-                  <Card.Body className='product-details'>
-                    <Card.Title className='product-name'>
+                  <Card.Body className="product-details">
+                    <Card.Title className="product-name">
                       <Link to={`/product/${product._id}`}>{product.name}</Link>
                     </Card.Title>
 
                     <Row>
                       <Col>
-                        <Card.Text className='product-price'>
+                        <Card.Text className="product-price">
                           {"$" + product.price}
                         </Card.Text>
                       </Col>
                       <Col>
                         <Card.Text>
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star-half-o' aria-hidden='true' />
-                          <i className='fa fa-star-o' aria-hidden='true' />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star-half-o" aria-hidden="true" />
+                          <i className="fa fa-star-o" aria-hidden="true" />
                         </Card.Text>
                       </Col>
                     </Row>
                     <Row>
                       <Col>
                         <i
-                          className='fa fa-cart-plus add-to-cart'
-                          aria-hidden='true'
-                          onClick={e => {
+                          className="fa fa-cart-plus add-to-cart"
+                          aria-hidden="true"
+                          onClick={(e) => {
                             e.preventDefault();
                             addTo(addToCart(product._id));
                           }}
-                          title='Add to cart'
+                          title="Add to cart"
                         />
                       </Col>
                       <Col>
@@ -112,9 +113,9 @@ function CategoryProducts(props) {
                           onClick={() => {
                             addTo(addToWishlist(product._id));
                           }}
-                          className='fa fa-heart-o add-to-wishlist'
-                          aria-hidden='true'
-                          title='Add to wish list'
+                          className="fa fa-heart-o add-to-wishlist"
+                          aria-hidden="true"
+                          title="Add to wish list"
                         />
                       </Col>
                     </Row>

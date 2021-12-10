@@ -22,7 +22,7 @@ router.post(
   "/create",
   auth,
   sellerAuth,
-  handle_images.productImages(),
+  // handle_images.productImages(),
   product_validation.validateAdd,
   product_controller.createProduct
 );
@@ -49,7 +49,7 @@ router.post(
   "/:id/update",
   auth,
   sellerAuth,
-  handle_images.productImages(),
+  // handle_images.productImages(),
   product_validation.validateUpdate,
   product_controller.updateProduct
 );

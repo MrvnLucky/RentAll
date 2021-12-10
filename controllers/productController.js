@@ -80,7 +80,7 @@ exports.createProduct = (req, res) => {
   //   return res.status(400).json({ message: "Please upload an image" });
   // }
 
-  const images_url = req.files.map((image) => image.path);
+  // const images_url = req.files.map((image) => image.path);
 
   // create new product after being validated and sanitized
   let newProduct = new Product({
@@ -90,7 +90,7 @@ exports.createProduct = (req, res) => {
     seller: req.user.id,
     price: req.body.price,
     numberInStock: req.body.numberInStock,
-    productImage: images_url,
+    // productImage: images_url,
   });
 
   newProduct.save(function (err, product) {
@@ -144,7 +144,7 @@ exports.deleteProduct = (req, res) => {
 
 // handle POST request at /api/product/:id/update to update an item
 exports.updateProduct = (req, res) => {
-  const images_url = req.files.map((image) => image.path);
+  // const images_url = req.files.map((image) => image.path);
 
   // find one product in the database to get the same images
   //if the user won't update the images
@@ -157,7 +157,7 @@ exports.updateProduct = (req, res) => {
         category: req.body.category,
         price: req.body.price,
         numberInStock: req.body.numberInStock,
-        productImage: req.files[0] ? images_url : product.productImage,
+        // productImage: req.files[0] ? images_url : product.productImage,
       };
 
       // update with the new data
@@ -175,3 +175,22 @@ exports.updateProduct = (req, res) => {
     })
     .catch((err) => res.json(err));
 };
+
+// exports.updateProduct = (req, res) => {
+//   // create clear updateProduct after sanitization
+//   let updatedProduct = new Product({
+//     name: req.body.name,
+//     description: req.body.description,
+//     category: req.body.category,
+//     price: req.body.price,
+//     numberInStock: req.body.numberInStock,
+//     // productImage: req.files[0] ? images_url : product.productImage,
+//   });
+
+//   Product.findByIdAndUpdate(req.params.id, updatedProduct, {
+//     new: true,
+//     useFindAndModify: false,
+//   })
+//     .then((product) => res.json({ message: "Successfully updated", product }))
+//     .catch((err) => res.json(err));
+// };

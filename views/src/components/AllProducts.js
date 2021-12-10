@@ -10,7 +10,9 @@ import DashboardSpinner from "./dashboard/DashboardSpinner";
 import MainPagination from "./MainPagination";
 
 function AllProducts(props) {
-  const { products, pagesCount, loading, error } = useSelector(state => state.productsss);
+  const { products, pagesCount, loading, error } = useSelector(
+    (state) => state.productsss
+  );
 
   let [perPageP, setPerPageP] = useState(8);
 
@@ -28,32 +30,35 @@ function AllProducts(props) {
   }, [dispatch, page, perPage]);
 
   // handle add to cart and wishlist
-  const addTo = addFunction => {
+  const addTo = (addFunction) => {
     dispatch(addFunction)
-      .then(res => {
+      .then((res) => {
         toast.success(res, {
           position: toast.POSITION.BOTTOM_LEFT,
-          transition: Slide
+          transition: Slide,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         toast.error(err, {
           position: toast.POSITION.BOTTOM_LEFT,
-          autoClose: false
+          autoClose: false,
         });
       });
   };
 
   return (
-    <Container fluid className='all-products'>
+    <Container fluid className="all-products">
       {!loading && (
-        <Col className='per-page'>
+        <Col className="per-page">
           <span>Per page</span>
-          <select className='custom-select' onChange={e => setPerPageP(e.target.value)}>
-            <option value='8'>8</option>
-            <option value='12'>12</option>
-            <option value='20'>20</option>
-            <option value='24'>24</option>
+          <select
+            className="custom-select"
+            onChange={(e) => setPerPageP(e.target.value)}
+          >
+            <option value="8">8</option>
+            <option value="12">12</option>
+            <option value="20">20</option>
+            <option value="24">24</option>
           </select>
         </Col>
       )}
@@ -61,50 +66,51 @@ function AllProducts(props) {
         {loading && <DashboardSpinner />}
         {error && <Col>{error}</Col>}
         {!loading &&
-          products.map(product => {
+          products.map((product) => {
             return (
-              <Col lg={3} key={product._id} className='product-card'>
+              <Col lg={3} key={product._id} className="product-card">
                 <Card>
                   <Link to={`/product/${product._id}`}>
                     <Card.Img
-                      className='product-card-image'
-                      variant='top'
-                      src={product.productImage[0]}
+                      className="product-card-image"
+                      variant="top"
+                      // src={product.productImage[0]}
+                      src="https://dummyimage.com/400.png"
                     />
                   </Link>
 
-                  <Card.Body className='product-details'>
-                    <Card.Title className='product-name'>
+                  <Card.Body className="product-details">
+                    <Card.Title className="product-name">
                       <Link to={`/product/${product._id}`}>{product.name}</Link>
                     </Card.Title>
 
                     <Row>
                       <Col>
-                        <Card.Text className='product-price'>
+                        <Card.Text className="product-price">
                           {"$" + product.price}
                         </Card.Text>
                       </Col>
                       <Col>
                         <Card.Text>
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star' aria-hidden='true' />
-                          <i className='fa fa-star-half-o' aria-hidden='true' />
-                          <i className='fa fa-star-o' aria-hidden='true' />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star" aria-hidden="true" />
+                          <i className="fa fa-star-half-o" aria-hidden="true" />
+                          <i className="fa fa-star-o" aria-hidden="true" />
                         </Card.Text>
                       </Col>
                     </Row>
                     <Row>
                       <Col>
                         <i
-                          className='fa fa-cart-plus add-to-cart'
-                          aria-hidden='true'
+                          className="fa fa-cart-plus add-to-cart"
+                          aria-hidden="true"
                           onClick={() => {
                             let orderQuantity = 1;
                             let quantity = { orderQuantity };
                             addTo(addToCart(product._id, quantity));
                           }}
-                          title='Add to cart'
+                          title="Add to cart"
                         />
                       </Col>
                       <Col>
@@ -112,9 +118,9 @@ function AllProducts(props) {
                           onClick={() => {
                             addTo(addToWishlist(product._id));
                           }}
-                          className='fa fa-heart-o add-to-wishlist'
-                          aria-hidden='true'
-                          title='Add to wish list'
+                          className="fa fa-heart-o add-to-wishlist"
+                          aria-hidden="true"
+                          title="Add to wish list"
                         />
                       </Col>
                     </Row>
@@ -124,7 +130,7 @@ function AllProducts(props) {
             );
           })}
       </Row>
-      {!loading && <MainPagination path='/products' pagesCount={pagesCount} />}
+      {!loading && <MainPagination path="/products" pagesCount={pagesCount} />}
     </Container>
   );
 }

@@ -5,31 +5,31 @@ import { tokenConfig } from "./../auth-actions/tokenConfig";
 export const updateProduct = (id, product) => (dispatch, getState) => {
   return new Promise((reslove, reject) => {
     // send our data as a multipart/form-data instead of application/json
-    const formData = new FormData();
-    for (const x in product) {
-      if (x === "productImage") {
-        for (let i = 0; i < product.productImage.length; i++) {
-          formData.append(x, product.productImage[i]);
-        }
-      }
-      formData.append("productImage", product.productImage);
-    }
-    formData.append("name", product.name);
-    formData.append("description", product.description);
-    formData.append("category", product.category);
-    formData.append("price", product.price);
-    formData.append("numberInStock", product.numberInStock);
+    // const formData = new FormData();
+    // for (const x in product) {
+    //   if (x === "productImage") {
+    //     for (let i = 0; i < product.productImage.length; i++) {
+    //       formData.append(x, product.productImage[i]);
+    //     }
+    //   }
+    //   formData.append("productImage", product.productImage);
+    // }
+    // formData.append("name", product.name);
+    // formData.append("description", product.description);
+    // formData.append("category", product.category);
+    // formData.append("price", product.price);
+    // formData.append("numberInStock", product.numberInStock);
 
     axios
-      .post(`/api/product/${id}/update`, formData, tokenConfig(getState))
-      .then(res => {
+      .post(`/api/product/${id}/update`, product, tokenConfig(getState))
+      .then((res) => {
         let newProduct = res.data.product;
         let successMessage = res.data.message;
 
         dispatch(updateProductSuccess(id, newProduct, successMessage));
         reslove(successMessage);
       })
-      .catch(err => {
+      .catch((err) => {
         let errorMessage = err.response.data.message;
 
         dispatch(updateProductFailure(errorMessage));
@@ -44,16 +44,16 @@ const updateProductSuccess = (id, newProduct, successMessage) => {
     payload: {
       id,
       newProduct,
-      successMessage
-    }
+      successMessage,
+    },
   };
 };
 
-const updateProductFailure = error => {
+const updateProductFailure = (error) => {
   return {
     type: UPDATE_PRODUCT_FAILURE,
     payload: {
-      error
-    }
+      error,
+    },
   };
 };

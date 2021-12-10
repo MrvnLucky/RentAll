@@ -16,7 +16,7 @@ import {
   Slide,
   ImageWithZoom,
   Dot,
-  Image
+  Image,
 } from "pure-react-carousel";
 import "pure-react-carousel/dist/react-carousel.es.css";
 
@@ -24,7 +24,9 @@ function SingleProduct(props) {
   const [orderQuantity, setOrderQuantity] = useState(0);
 
   // import product, loading, error from redux store
-  const { product, loading, error } = useSelector(state => state.singleProducttt);
+  const { product, loading, error } = useSelector(
+    (state) => state.singleProducttt
+  );
 
   const dispatch = useDispatch();
 
@@ -36,13 +38,19 @@ function SingleProduct(props) {
   const prodCategory = () => {
     if (product.category !== null) {
       return (
-        <p className='product-category'>
+        <p className="product-category">
           Category:{" "}
-          <Link to={`/category/${product.category._id}`}>{product.category.name}</Link>
+          <Link to={`/category/${product.category._id}`}>
+            {product.category.name}
+          </Link>
         </p>
       );
     } else {
-      return <div className='product-category'>Category: undefined "will edit soon"</div>;
+      return (
+        <div className="product-category">
+          Category: undefined "will edit soon"
+        </div>
+      );
     }
   };
 
@@ -63,18 +71,18 @@ function SingleProduct(props) {
   }
 
   // handle add to cart and wishlist
-  const addTo = addFunction => {
+  const addTo = (addFunction) => {
     dispatch(addFunction)
-      .then(res => {
+      .then((res) => {
         toast.success(res, {
           position: toast.POSITION.BOTTOM_LEFT,
-          transition: toastSlide
+          transition: toastSlide,
         });
       })
-      .catch(err => {
+      .catch((err) => {
         toast.error(err, {
           position: toast.POSITION.BOTTOM_LEFT,
-          autoClose: false
+          autoClose: false,
         });
       });
   };
@@ -85,45 +93,49 @@ function SingleProduct(props) {
     return <Page404 />;
   } else {
     return (
-      <Container fluid className='single-product-page'>
+      <Container fluid className="single-product-page">
         {loading && (
           <Loader
-            type='Circles'
-            color='#123'
+            type="Circles"
+            color="#123"
             height={100}
             width={100}
-            className='dashboard-spinner'
+            className="dashboard-spinner"
           />
         )}
         {error && <div>{error}</div>}
         {product.category !== undefined && (
           <Row>
-            <Col md='6' sm='12'>
+            <Col md="6" sm="12">
               <CarouselProvider
                 naturalSlideWidth={90}
                 naturalSlideHeight={90}
-                hasMasterSpinner='true'
-                totalSlides={product.productImage.length}>
+                hasMasterSpinner="true"
+                totalSlides={product.productImage.length}
+              >
                 <Slider>
                   {product.productImage.map((image, index) => {
                     //let imgPath = image.path.replace(/\\/g, "/");
                     return (
                       <Slide index={index} key={index}>
                         <ImageWithZoom
-                          className='d-block w-100 product-card-image'
+                          className="d-block w-100 product-card-image"
                           src={image}
                         />
                       </Slide>
                     );
                   })}
-                  <div className='down'>Roll over image to zoom in</div>
+                  <div className="down">Roll over image to zoom in</div>
                 </Slider>
 
-                <div className='all-dots'>
+                <div className="all-dots">
                   {product.productImage.map((image, index) => {
                     return (
                       <Dot slide={index} key={index}>
-                        <Image className='d-block w-100 product-card-image' src={image} />
+                        <Image
+                          className="d-block w-100 product-card-image"
+                          src={image}
+                        />
                       </Dot>
                     );
                   })}
@@ -133,57 +145,60 @@ function SingleProduct(props) {
 
             {/* *** Product Details *** */}
             <Col>
-              <span className='product-name'>{product.name}</span>
+              <span className="product-name">{product.name}</span>
 
-              <p className='sold-by'>
+              <p className="sold-by">
                 by <span>{product.seller.username}</span>
               </p>
 
               <Row>
                 <Col>
-                  <div className='product-price'>${product.price}</div>
+                  <div className="product-price">${product.price}</div>
                 </Col>
                 <Col>
                   <i
-                    className='fa fa-heart-o add-to-wish-list'
+                    className="fa fa-heart-o add-to-wish-list"
                     onClick={() => {
                       addTo(addToWishlist(product._id));
                     }}
-                    aria-hidden='true'
-                    title='Add to wish list'></i>
+                    aria-hidden="true"
+                    title="Add to wish list"
+                  ></i>
                 </Col>
               </Row>
 
-              <p className='product-desc'>
+              <p className="product-desc">
                 Description: <span>{product.description}</span>
               </p>
 
               {product.numberInStock < 67 && (
-                <div className='product-stock'>
+                <div className="product-stock">
                   only {product.numberInStock} left in Stock, order soon.
                 </div>
               )}
 
               <Row>
-                <Col className='order-quantity'>
+                <Col className="order-quantity">
                   <span>Quantity:</span>
                   <select
-                    className='browser-default custom-select'
-                    onChange={e => {
+                    className="browser-default custom-select"
+                    onChange={(e) => {
                       setOrderQuantity(e.target.value);
-                    }}>
+                    }}
+                  >
                     <option value={0}>QTY</option>
                     {options()}
                   </select>
                 </Col>
                 <Col>
                   <Button
-                    className='add-to-cart'
-                    variant='secondary'
+                    className="add-to-cart"
+                    variant="secondary"
                     onClick={() => {
                       let quantity = { orderQuantity };
                       addTo(addToCart(product._id, quantity));
-                    }}>
+                    }}
+                  >
                     Add to cart
                   </Button>
                 </Col>
@@ -194,7 +209,7 @@ function SingleProduct(props) {
           </Row>
         )}
 
-        <ProductsCarousel title='Similar Products' productsNumber='4' />
+        <ProductsCarousel title="Similar Products" productsNumber="4" />
         <ExploreMore />
       </Container>
     );
